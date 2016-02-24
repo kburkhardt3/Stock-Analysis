@@ -11,12 +11,9 @@ def scrape(tickers):
             url = url1 + tick + url2
             file_name = tick + '.csv'
             urllib.request.urlretrieve(url, file_name)
-            print('downloaded!')
-#        else: # downloads new file as ticker.csv
-#            break
 
     f = open(tick + '.csv','r')
     read_file = f.read()
     file_rows = read_file.split('\n')
     
-    print(file_rows[1])
+    print(file_rows[1]) # just a check, should be deleted soon
