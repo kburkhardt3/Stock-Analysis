@@ -1,0 +1,13 @@
+# Take port_val to be the daily values of a portfolio over time
+
+def port_analysis(port_val):
+    daily_rf = 1.095**(1/252) - 1 # daily  return in Discover account
+    daily_rets = port_val/port_val.shift(1) - 1 # calculates daily returns
+    daily_rets = daily_rets[1:] # gets rid of NaN as first value
+    
+    cum_ret = port_val[-1]/port_val[0] - 1
+    avg_daily_ret = daily_rets.mean()
+    std_daily_ret = daily_rets.std()
+    Sharpe_ratio = (avg_daily_ret - daily_rf)/std_daily_ret
+    
+    print('The cumulative return is ', cum_ret, '\nThe average daily return is ', avg_daily_ret, '\nThe risk is ', std_daily_ret, '\nThe Sharpe ratio is ', Sharpe_ratio)
